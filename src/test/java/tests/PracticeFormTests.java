@@ -1,9 +1,12 @@
+package tests;
+
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static tests.testdata.TestDataPracticeForm.*;
 
 public class PracticeFormTests extends TestBase {
 
@@ -15,18 +18,18 @@ public class PracticeFormTests extends TestBase {
         $("[aria-label=Close]").click();
         // Заполнить поле FirstName
         $("[id=firstName]").click();
-        $("[id=firstName]").setValue("First Name");
+        $("[id=firstName]").setValue(firstName);
         // Заполнить поле LastName
         $("[id=lastName]").click();
-        $("[id=lastName]").setValue("Second Name");
+        $("[id=lastName]").setValue(secondName);
         // Заполнить поле Email
         $("[id=userEmail]").click();
-        $("[id=userEmail]").setValue("example@mail.com");
+        $("[id=userEmail]").setValue(userEmail);
         // Установить значение Gender
         $("[id=gender-radio-3]").click();
         // Заполнить поле Mobile
         $("[id=userNumber]").click();
-        $("[id=userNumber]").setValue("9999999999");
+        $("[id=userNumber]").setValue(userNumber);
         // Заполнить поле Date of Birth
         $("[id=dateOfBirthInput]").click();
         $x("//*[@data-day='4']").click();
@@ -36,10 +39,10 @@ public class PracticeFormTests extends TestBase {
         // Установить значение Hobbies
         $("[id=hobbies-checkbox-2]").click();
         // Добавить изображение
-        $("[id=uploadPicture]").uploadFile(new File("src/test/data/capybara.avif"));
+        $("[id=uploadPicture]").uploadFile(new File(uploadPicture));
         // Заполнить поле Current Address
         $("[id=currentAddress]").click();
-        $("[id=currentAddress]").setValue("Pushkina, Kolotushkina");
+        $("[id=currentAddress]").setValue(currentAddress);
         // Заполнить поле State
         $("[id=state]").click();
         $x("//*[contains(text(), 'Uttar Pradesh')]").scrollIntoView(true);
@@ -52,7 +55,7 @@ public class PracticeFormTests extends TestBase {
         $("[id=submit]").click();
         // Проверить что отправка формы была успешна
         $("[id=resultModal]").shouldHave(visible);
-        $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
+        $("[id=example-modal-sizes-title-lg]").shouldHave(text(successSubmitText));
     }
 
     @Test  // Заполнение только обязательных полей
@@ -60,19 +63,19 @@ public class PracticeFormTests extends TestBase {
         open("/automation-practice-form.html");
         $("[aria-label=Close]").click();
         $("[id=firstName]").click();
-        $("[id=firstName]").setValue("First Name");
+        $("[id=firstName]").setValue(firstName);
         $("[id=lastName]").click();
-        $("[id=lastName]").setValue("Second Name");
+        $("[id=lastName]").setValue(secondName);
         $("[id=userEmail]").click();
-        $("[id=userEmail]").setValue("example@mail.com");
+        $("[id=userEmail]").setValue(userEmail);
         $("[id=gender-radio-3]").click();
         $("[id=userNumber]").click();
-        $("[id=userNumber]").setValue("9999999999");
+        $("[id=userNumber]").setValue(userNumber);
         $("[id=dateOfBirthInput]").click();
         $x("//*[@data-day='4']").click();
         $("[id=submit]").click();
         $("[id=resultModal]").shouldHave(visible);
-        $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
+        $("[id=example-modal-sizes-title-lg]").shouldHave(text(successSubmitText));
     }
 
     @Test  // Отправка пустой формы
@@ -81,7 +84,7 @@ public class PracticeFormTests extends TestBase {
         $("[aria-label=Close]").click();
         $("[id=submit]").scrollIntoView(true);
         $("[id=submit]").click();
-        $("[id=formError]").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
+        $("[id=formError]").shouldHave(text(formError));
     }
 
     @Test  // Отправка формы с некорректным номером телефона
@@ -89,15 +92,15 @@ public class PracticeFormTests extends TestBase {
         open("/automation-practice-form.html");
         $("[aria-label=Close]").click();
         $("[id=firstName]").click();
-        $("[id=firstName]").setValue("First Name");
+        $("[id=firstName]").setValue(firstName);
         $("[id=lastName]").click();
-        $("[id=lastName]").setValue("Second Name");
+        $("[id=lastName]").setValue(secondName);
         $("[id=userEmail]").click();
-        $("[id=userEmail]").setValue("example@mail.com");
+        $("[id=userEmail]").setValue(userEmail);
         $("[id=userNumber]").click();
-        $("[id=userNumber]").setValue("999999999");
+        $("[id=userNumber]").setValue(incorrextUserNumber);
         $("[id=submit]").click();
-        $("[id=formError]").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
+        $("[id=formError]").shouldHave(text(formError));
     }
 
     @Test  // Отправка формы с пустым полем First Name
@@ -105,12 +108,12 @@ public class PracticeFormTests extends TestBase {
         open("/automation-practice-form.html");
         $("[aria-label=Close]").click();
         $("[id=lastName]").click();
-        $("[id=lastName]").setValue("Second Name");
+        $("[id=lastName]").setValue(secondName);
         $("[id=userEmail]").click();
-        $("[id=userEmail]").setValue("example@mail.com");
+        $("[id=userEmail]").setValue(userEmail);
         $("[id=userNumber]").click();
-        $("[id=userNumber]").setValue("999999999");
+        $("[id=userNumber]").setValue(userNumber);
         $("[id=submit]").click();
-        $("[id=formError]").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
+        $("[id=formError]").shouldHave(text(formError));
     }
 }
