@@ -44,11 +44,11 @@ public class PracticeFormTests extends TestBase {
         $("[id=currentAddress]").setValue(currentAddress);
         // Заполнить поле State
         $("[id=state]").click();
-        $x("//*[contains(text(), 'Uttar Pradesh')]").scrollIntoView(true);
-        $x("//*[contains(text(), 'Uttar Pradesh')]").click();
+        $x("//*[contains(text(), '" + state + "')]").scrollIntoView(true);
+        $x("//*[contains(text(), '" + state + "')]").click();
         // Заполнить поле City
         $("[id=city]").click();
-        $x("//*[contains(text(), 'Agra')]").click();
+        $x("//*[contains(text(), '" + city + "')]").click();
         // Выполнить отправку формы
         $("[id=submit]").scrollIntoView(true);
         $("[id=submit]").click();

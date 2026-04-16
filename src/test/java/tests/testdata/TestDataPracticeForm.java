@@ -8,6 +8,8 @@ public class TestDataPracticeForm {
             userNumber = "9999999999",
             uploadPicture = "capybara.avif",
             currentAddress = "Pushkina, Kolotushkina",
+            state = "Uttar Pradesh",
+            city = "Agra",
             successSubmitText = "Thanks for submitting the form",
             formError = "Please fill required fields and enter a valid 10-digit mobile number.",
             incorrextUserNumber = "999999999";
