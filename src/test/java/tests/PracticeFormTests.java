@@ -38,7 +38,7 @@ public class PracticeFormTests extends TestBase {
         // Установить значение Hobbies
         $("[id=hobbies-checkbox-2]").click();
         // Добавить изображение
-        $("[id=uploadPicture]").uploadFromClasspath("capybara.avif");
+        $("[id=uploadPicture]").uploadFromClasspath(uploadPicture);
         // Заполнить поле Current Address
         $("[id=currentAddress]").click();
         $("[id=currentAddress]").setValue(currentAddress);
