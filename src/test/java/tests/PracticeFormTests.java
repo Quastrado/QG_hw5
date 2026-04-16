@@ -2,8 +2,6 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static tests.testdata.TestDataPracticeForm.*;
@@ -40,7 +38,7 @@ public class PracticeFormTests extends TestBase {
         // Установить значение Hobbies
         $("[id=hobbies-checkbox-2]").click();
         // Добавить изображение
-        $("[id=uploadPicture]").uploadFile(new File(uploadPicture));
+        $("[id=uploadPicture]").uploadFromClasspath("capybara.avif");
         // Заполнить поле Current Address
         $("[id=currentAddress]").click();
         $("[id=currentAddress]").setValue(currentAddress);
